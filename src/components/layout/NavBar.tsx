@@ -35,7 +35,7 @@ export default function Navbar() {
               <div className="flex items-center px-2 lg:px-0">
                 <Link className="flex-shrink-0 text-lg flex flex-row" href="/">
                   <Image
-                    src="/gameboy.svg"
+                    src="/assets/gameboy.svg"
                     width={32}
                     height={32}
                     alt="Avatar"
@@ -87,7 +87,7 @@ export default function Navbar() {
                       <Menu.Button className="flex rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">Open user menu</span>
                         <Image
-                          src="/darth-maul-avatar.svg"
+                          src="/assets/darth-maul-avatar.svg"
                           width={32}
                           height={32}
                           alt="Avatar"
@@ -167,7 +167,7 @@ export default function Navbar() {
               <div className="flex items-center px-5">
                 <div className="flex-shrink-0">
                   <Image
-                    src="/darth-maul-avatar.svg"
+                    src="/assets/darth-maul-avatar.svg"
                     width={44}
                     height={44}
                     alt="Avatar"
