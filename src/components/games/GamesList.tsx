@@ -16,7 +16,7 @@ export default function GamesList(props : GamesListProps) {
   const games = pages.flatMap((page) => page);
 
   const loadMore = async (page: number) => {
-    console.log('LOAD MORE')
+
     if (!fetching.current) {
       try {
         fetching.current = true;
@@ -33,10 +33,11 @@ export default function GamesList(props : GamesListProps) {
   return (
     <InfiniteScroll
       loadMore={loadMore}
+      pageStart={1}
       loader={
-        <li key={0} className="loader">
+        <span key={0} className="decoration-0 text-sm text-slate-200">
           Loading ...
-        </li>
+        </span>
       }
       element="div"
       hasMore={true || false}
