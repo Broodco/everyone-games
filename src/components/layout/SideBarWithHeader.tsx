@@ -12,11 +12,7 @@ import {usePathname} from "next/navigation";
 import {classNames} from "@/lib/utils";
 import Header from "@/components/layout/Header";
 import {Comfortaa} from "next/font/google";
-
-const navigation: { name:string, href:string }[] = [
-  { name: 'Home', href: '/'},
-  { name: 'New and trending', href: '/new'}
-];
+import {navigation} from "@/lib/routes";
 
 const comfortaa = Comfortaa({subsets: ['latin']})
 
@@ -91,7 +87,7 @@ export default function SideBarWithHeader() {
 
                               return (
                                 <li key={item.name}>
-                                  <a
+                                  <Link
                                     href={item.href}
                                     className={classNames(
                                       isActive
@@ -101,20 +97,11 @@ export default function SideBarWithHeader() {
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 </li>
                               )
                             })}
                           </ul>
-                        </li>
-                        <li className="mt-auto">
-                          <a
-                            href="#"
-                            className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
-                          >
-                            <Cog6ToothIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
-                            Settings
-                          </a>
                         </li>
                       </ul>
                     </nav>
@@ -147,7 +134,7 @@ export default function SideBarWithHeader() {
 
                       return (
                         <li key={item.name}>
-                          <a
+                          <Link
                             href={item.href}
                             className={classNames(
                               isActive
@@ -157,20 +144,11 @@ export default function SideBarWithHeader() {
                             )}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       )
                     })}
                   </ul>
-                </li>
-                <li className="mt-auto">
-                  <a
-                    href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
-                  >
-                    <Cog6ToothIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
-                    Settings
-                  </a>
                 </li>
               </ul>
             </nav>

@@ -53,7 +53,7 @@ export default function GameCard(props : GameCardProps) {
             {rating !== 0 ? rating : `No rating yet`}
           </p>
         </div>
-        <h3 className={`mt-4 text-2xl font-medium text-gray-100 px-3 line-clamp-2 text-left flex-grow ${comfortaa.className}`}>{props.name}</h3>
+        <h3 className={`mt-4 text-2xl font-medium text-gray-100 px-3 line-clamp-3 text-ellipsis text-left flex-grow`}>{props.name}</h3>
       </div>
     </Link>
   )

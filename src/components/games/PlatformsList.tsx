@@ -76,17 +76,18 @@ export default function PlatformsList (platforms: PlatformsListPropsType ) {
   const platformsIconsOrNames = getPlatformsIconsOrNames(platforms.platforms)
   return (
     <div className="flex flex-row space-x-2">
-      {platformsIconsOrNames.map(platformIconOrName => {
+      {platformsIconsOrNames.map((platformIconOrName, index) => {
         return <> {
           platformIconOrName.isIcon
           ?  <Image
+              key={index}
               className="invert px-0"
               src={platformIconOrName.value}
               width={16}
               height={16}
               alt={platformIconOrName.value}
             />
-          : <span className="text-sm">{platformIconOrName.value}</span>
+          : <span key={index} className="text-sm">{platformIconOrName.value}</span>
         } </>
       })}
     </div>

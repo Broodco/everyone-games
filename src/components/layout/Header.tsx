@@ -7,11 +7,7 @@ import Link from "next/link";
 import {classNames} from "@/lib/utils";
 import {usePathname} from "next/navigation";
 import Searchbar from "@/components/layout/SearchBar";
-
-const profileNavigation: { name:string, href:string }[] = [
-  { name: 'Profile', href: '/profile'},
-  { name: 'Settings', href: '/settings'},
-];
+import { profileNavigation } from "@/lib/routes";
 
 export default function Header({setSidebarOpen}: {setSidebarOpen: Dispatch<SetStateAction<boolean>>}) {
   const pathname = usePathname();
