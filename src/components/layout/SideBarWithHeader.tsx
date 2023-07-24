@@ -2,10 +2,7 @@
 
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import {
-  Cog6ToothIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
@@ -13,8 +10,9 @@ import {classNames} from "@/lib/utils";
 import Header from "@/components/layout/Header";
 import {Comfortaa} from "next/font/google";
 import {navigation} from "@/lib/routes";
+import {Genre} from "@/types/types_Genre";
 
-const comfortaa = Comfortaa({subsets: ['latin']})
+const comfortaa = Comfortaa({subsets: ['latin']});
 
 export default function SideBarWithHeader() {
   const [sidebarOpen, setSidebarOpen] = useState(false)

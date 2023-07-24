@@ -1,4 +1,4 @@
-import {getNewestGames} from "@/lib/games";
+import {getNewestGames} from "@/lib/api_rawg";
 import {Comfortaa} from "next/font/google";
 import GamesList from "@/components/games/GamesList";
 import {Game} from "@/types/types_Games";

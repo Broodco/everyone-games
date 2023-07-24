@@ -25,3 +25,14 @@ export async function getNewestGames(pageNumber: number = 1, pageSize: number = 
   return res.json();
 }
 
+export async function getGenres() {
+  const res = await fetch(
+    `https://api.rawg.io/api/genres?key=${process.env.RAWG_API_KEY}`
+  );
+
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
+  return res.json();
+}
