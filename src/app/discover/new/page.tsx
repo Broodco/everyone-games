@@ -6,10 +6,11 @@ const comfortaa = Comfortaa({ subsets: ["latin"] })
 
 const fetchGames = async (page: number = 1) => {
   "use server"
+
   const hostname =
     process.env.NODE_ENV === "production"
-      ? process.env.VERCEL_URL
-      : process.env.HOST
+      ? `https://${process.env.VERCEL_URL}`
+      : `${process.env.HOST}`
 
   const games = await fetch(`${hostname}/api/games/new?page=${page}`)
   const gamesArray: Game[] = (await games.json()).results
@@ -22,7 +23,7 @@ export default async function NewGames() {
 
   return (
     <>
-      <h1 className={`text-slate-50 text-5xl mb-6 ${comfortaa.className}`}>
+      <h1 className={`mb-6 text-5xl text-slate-50 ${comfortaa.className}`}>
         Newest games
       </h1>
 

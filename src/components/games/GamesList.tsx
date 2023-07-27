@@ -1,41 +1,39 @@
-'use client'
+"use client"
 
-import {Game} from "@/types/types_Games";
-import GameCard from "@/components/games/GameCard";
-import InfiniteScroll from "react-infinite-scroller";
-import {useRef, useState} from "react";
+import { Game } from "@/types/types_Games"
+import GameCard from "@/components/games/GameCard"
+import InfiniteScroll from "react-infinite-scroller"
+import { useRef, useState } from "react"
 
 interface GamesListProps {
-  initialGames: Game[];
-  fetchGames: (page: number) => Promise<Game[]>;
+  initialGames: Game[]
+  fetchGames: (page: number) => Promise<Game[]>
 }
 
-export default function GamesList(props : GamesListProps) {
-  const fetching = useRef(false);
-  const [pages, setPages] = useState([props.initialGames]);
-  const games = pages.flatMap((page) => page);
+export default function GamesList(props: GamesListProps) {
+  const fetching = useRef(false)
+  const [pages, setPages] = useState([props.initialGames])
+  const games = pages.flatMap((page) => page)
 
   const loadMore = async (page: number) => {
-
     if (!fetching.current) {
       try {
-        fetching.current = true;
+        fetching.current = true
 
-        const data = await props.fetchGames(page);
-        setPages((prev) => [...prev, data]);
+        const data = await props.fetchGames(page)
+        setPages((prev) => [...prev, data])
       } finally {
-        fetching.current = false;
+        fetching.current = false
       }
     }
-  };
-
+  }
 
   return (
     <InfiniteScroll
       loadMore={loadMore}
       pageStart={1}
       loader={
-        <span key={0} className="decoration-0 text-sm text-slate-200">
+        <span key={0} className="text-sm text-slate-200 decoration-0">
           Loading ...
         </span>
       }
@@ -46,17 +44,18 @@ export default function GamesList(props : GamesListProps) {
     >
       {games.map((game: Game, index: number) => {
         return (
-            <GameCard
-              key={index}
-              name={game.name}
-              backgroundImage={game.background_image}
-              platforms={game.platforms}
-              slug={game.slug}
-              metacritic={game.metacritic}
-              rating={game.rating}
-            />
+          <GameCard
+            key={index}
+            id={game.id}
+            name={game.name}
+            backgroundImage={game.background_image}
+            platforms={game.platforms}
+            slug={game.slug}
+            metacritic={game.metacritic}
+            rating={game.rating}
+          />
         )
       })}
     </InfiniteScroll>
-  );
+  )
 }

@@ -16,11 +16,7 @@ const fetchGenres = async () => {
   return genresArray
 }
 
-export default async function Genres({
-  searchParams,
-}: {
-  searchParams: { page: string }
-}) {
+export default async function Genres() {
   const genresArray: Genre[] = await fetchGenres()
 
   return (
