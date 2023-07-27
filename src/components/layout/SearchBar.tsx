@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid"
 
 export default function Searchbar() {
   return (

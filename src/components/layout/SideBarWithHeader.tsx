@@ -1,29 +1,32 @@
-'use client'
+"use client"
 
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import Image from "next/image";
-import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {classNames} from "@/lib/utils";
-import Header from "@/components/layout/Header";
-import {Comfortaa} from "next/font/google";
-import {navigation} from "@/lib/routes";
-import {Genre} from "@/types/types_Genre";
+import { Fragment, useState } from "react"
+import { Dialog, Transition } from "@headlessui/react"
+import { XMarkIcon } from "@heroicons/react/24/outline"
+import Image from "next/image"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { classNames } from "@/lib/utils"
+import Header from "@/components/layout/Header"
+import { Comfortaa } from "next/font/google"
+import { navigation } from "@/lib/routes"
 
-const comfortaa = Comfortaa({subsets: ['latin']});
+const comfortaa = Comfortaa({ subsets: ["latin"] })
 
 export default function SideBarWithHeader() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   return (
     <>
       <div>
         {/* Dynamic mobile sidebar */}
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
+          <Dialog
+            as="div"
+            className="relative z-50 lg:hidden"
+            onClose={setSidebarOpen}
+          >
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -57,23 +60,37 @@ export default function SideBarWithHeader() {
                     leaveTo="opacity-0"
                   >
                     <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                      <button type="button" className="-m-2.5 p-2.5" onClick={() => setSidebarOpen(false)}>
+                      <button
+                        type="button"
+                        className="-m-2.5 p-2.5"
+                        onClick={() => setSidebarOpen(false)}
+                      >
                         <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                        <XMarkIcon
+                          className="h-6 w-6 text-white"
+                          aria-hidden="true"
+                        />
                       </button>
                     </div>
                   </Transition.Child>
                   {/* Sidebar component, swap this element with another sidebar if you like */}
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-5 pb-4 ring-1 ring-white/10">
                     <div className="flex h-16 shrink-0 items-center">
-                      <Link className="flex-shrink-0 text-lg flex flex-row" href="/">
+                      <Link
+                        className="flex-shrink-0 text-lg flex flex-row"
+                        href="/"
+                      >
                         <Image
                           src="/assets/gameboy.svg"
                           width={32}
                           height={32}
                           alt="Avatar"
                         />
-                        <h2 className={`font-mono text-2xl font-semibold pt-0.5 pl-4 text-gray-50 ${comfortaa.className}`}>Everyone Games</h2>
+                        <h2
+                          className={`font-mono text-2xl font-semibold pt-0.5 pl-4 text-gray-50 ${comfortaa.className}`}
+                        >
+                          Everyone Games
+                        </h2>
                       </Link>
                     </div>
                     <nav className="flex flex-1 flex-col">
@@ -81,7 +98,7 @@ export default function SideBarWithHeader() {
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
                             {navigation.map((item) => {
-                              const isActive = pathname === item.href;
+                              const isActive = pathname === item.href
 
                               return (
                                 <li key={item.name}>
@@ -89,9 +106,9 @@ export default function SideBarWithHeader() {
                                     href={item.href}
                                     className={classNames(
                                       isActive
-                                        ? 'bg-cyan-900 text-white'
-                                        : 'text-gray-400 hover:text-white hover:bg-cyan-950',
-                                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                        ? "bg-cyan-900 text-white"
+                                        : "text-gray-400 hover:text-white hover:bg-cyan-950",
+                                      "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
                                     )}
                                   >
                                     {item.name}
@@ -121,14 +138,18 @@ export default function SideBarWithHeader() {
                 height={36}
                 alt="Avatar"
               />
-              <h2 className={`hidden lg:block text-2xl font-semibold pt-0.5 pl-2 text-gray-50 ${comfortaa.className}`}>Everyone Games</h2>
+              <h2
+                className={`hidden lg:block text-2xl font-semibold pt-0.5 pl-2 text-gray-50 ${comfortaa.className}`}
+              >
+                Everyone Games
+              </h2>
             </Link>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => {
-                      const isActive = pathname === item.href;
+                      const isActive = pathname === item.href
 
                       return (
                         <li key={item.name}>
@@ -136,9 +157,9 @@ export default function SideBarWithHeader() {
                             href={item.href}
                             className={classNames(
                               isActive
-                                ? 'bg-cyan-900 text-white'
-                                : 'text-gray-400 hover:text-white hover:bg-cyan-950',
-                              'group flex gap-x-3 rounded-md p-2 pl-4 text-md leading-6 font-semibold'
+                                ? "bg-cyan-900 text-white"
+                                : "text-gray-400 hover:text-white hover:bg-cyan-950",
+                              "group flex gap-x-3 rounded-md p-2 pl-4 text-md leading-6 font-semibold",
                             )}
                           >
                             {item.name}
@@ -154,7 +175,7 @@ export default function SideBarWithHeader() {
         </div>
 
         {/* Header with search bar */}
-        <Header setSidebarOpen={setSidebarOpen}/>
+        <Header setSidebarOpen={setSidebarOpen} />
       </div>
     </>
   )
