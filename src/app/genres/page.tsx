@@ -7,8 +7,8 @@ const comfortaa = Comfortaa({ subsets: ["latin"] })
 const fetchGenres = async () => {
   const hostname =
     process.env.NODE_ENV === "production"
-      ? process.env.VERCEL_URL
-      : process.env.HOST
+      ? `https://${process.env.VERCEL_URL}`
+      : `${process.env.HOST}`
 
   const genres = await fetch(`${hostname}/api/genres`)
   const genresArray: Genre[] = (await genres.json()).results

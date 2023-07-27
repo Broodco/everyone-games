@@ -9,8 +9,8 @@ const fetchGames = async (page: number = 1) => {
 
   const hostname =
     process.env.NODE_ENV === "production"
-      ? process.env.VERCEL_URL
-      : process.env.HOST
+      ? `https://${process.env.VERCEL_URL}`
+      : `${process.env.HOST}`
 
   const games = await fetch(`${hostname}/api/games/popular?page=${page}`)
   const gamesArray: Game[] = (await games.json()).results
