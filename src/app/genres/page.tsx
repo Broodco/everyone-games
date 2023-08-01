@@ -1,8 +1,6 @@
-import { Comfortaa } from "next/font/google"
 import { Genre } from "@/types/types_Genre"
 import GenresList from "@/components/genres/GenresList"
-
-const comfortaa = Comfortaa({ subsets: ["latin"] })
+import PageTitle from "@/components/common/PageTitle";
 
 const fetchGenres = async () => {
   const hostname =
@@ -21,9 +19,8 @@ export default async function Genres() {
 
   return (
     <>
-      <h1 className={`text-slate-50 text-5xl mb-6 ${comfortaa.className}`}>
-        Genres
-      </h1>
+      <PageTitle title="Genres" />
+
       <div className="flex-6">
         <GenresList genres={genresArray} />
       </div>

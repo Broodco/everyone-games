@@ -1,10 +1,23 @@
 "use client"
 
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid"
+import {useState} from "react";
+import {useRouter, useSearchParams} from "next/navigation";
 
 export default function Searchbar() {
+  const search = useSearchParams();
+  const [searchValue, setSearchValue] = useState(search.get("q") ?? "");
+  const router = useRouter();
+  const onSearch = (e : React.FormEvent) => {
+    e.preventDefault();
+
+    const encodedSearchValue: string = encodeURI(searchValue)
+    setSearchValue("")
+    router.push(`/search?q=${encodedSearchValue}`);
+  }
+
   return (
-    <form className="relative flex flex-1" action="#" method="GET">
+    <form className="relative flex flex-1" onSubmit={onSearch}>
       <label htmlFor="search-field" className="sr-only">
         Search
       </label>
@@ -18,6 +31,8 @@ export default function Searchbar() {
         placeholder="Search..."
         type="search"
         name="search"
+        value={searchValue}
+        onChange={e => setSearchValue(e.target.value)}
       />
     </form>
   )

@@ -2,47 +2,15 @@
 
 import { Game } from "@/types/types_Games"
 import GameCard from "@/components/games/GameCard"
-import InfiniteScroll from "react-infinite-scroller"
-import { useRef, useState } from "react"
 
 interface GamesListProps {
-  initialGames: Game[]
-  fetchGames: (page: number) => Promise<Game[]>
+  games: Game[]
 }
 
 export default function GamesList(props: GamesListProps) {
-  const fetching = useRef(false)
-  const [pages, setPages] = useState([props.initialGames])
-  const games = pages.flatMap((page) => page)
-
-  const loadMore = async (page: number) => {
-    if (!fetching.current) {
-      try {
-        fetching.current = true
-
-        const data = await props.fetchGames(page)
-        setPages((prev) => [...prev, data])
-      } finally {
-        fetching.current = false
-      }
-    }
-  }
-
   return (
-    <InfiniteScroll
-      loadMore={loadMore}
-      pageStart={1}
-      loader={
-        <span key={0} className="text-sm text-slate-200 decoration-0">
-          Loading ...
-        </span>
-      }
-      element="div"
-      hasMore={true || false}
-      useWindow={true}
-      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-    >
-      {games.map((game: Game, index: number) => {
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {props.games.map((game: Game, index: number) => {
         return (
           <GameCard
             key={index}
@@ -56,6 +24,6 @@ export default function GamesList(props: GamesListProps) {
           />
         )
       })}
-    </InfiniteScroll>
+    </div>
   )
 }

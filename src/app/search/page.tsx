@@ -1,8 +1,9 @@
 import InfiniteGamesList from "@/components/games/InfiniteGamesList"
 import { Game } from "@/types/types_Games"
 import PageTitle from "@/components/common/PageTitle";
+import GamesList from "@/components/games/GamesList";
 
-const fetchGames = async (page: number = 1) => {
+const fetchGames = async (searchValue: string = "") => {
   "use server"
 
   const hostname =
@@ -10,24 +11,23 @@ const fetchGames = async (page: number = 1) => {
       ? `https://${process.env.VERCEL_URL}`
       : `${process.env.HOST}`
 
-  const games = await fetch(`${hostname}/api/games/popular?page=${page}`)
+  const games = await fetch(`${hostname}/api/games?search=${searchValue}`)
   const gamesArray: Game[] = (await games.json()).results
 
   return gamesArray
 }
 
-export default async function Home({
+export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { page: string }
+  searchParams: { page: number, q?: string }
 }) {
-  const gamesArray: Game[] = await fetchGames()
-
+  const gamesArray: Game[] = await fetchGames(searchParams.q)
   return (
     <>
-      <PageTitle title="Games" />
+      <PageTitle title="Search results" />
       <div className="flex-6">
-        <InfiniteGamesList initialGames={[...gamesArray]} fetchGames={fetchGames} />
+        <GamesList games={gamesArray}/>
       </div>
     </>
   )

@@ -1,6 +1,5 @@
 import PlatformsList from "@/components/games/PlatformsList"
 import { PlatformInfo } from "@/types/types_Platform"
-import { Comfortaa } from "next/font/google"
 import Link from "next/link"
 
 interface GameCardProps {
@@ -13,7 +12,6 @@ interface GameCardProps {
   platforms: PlatformInfo[]
 }
 
-const comfortaa = Comfortaa({ subsets: ["latin"] })
 
 export default function GameCard(props: GameCardProps) {
   let ratingColor: string = ""
